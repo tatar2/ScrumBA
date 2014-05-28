@@ -1,15 +1,15 @@
 <?php
 /**
- * @author Tatar <tatarzb@poczta.onet.pl>
- * @version: 0.1
- * @license http://www.gnu.org/copyleft/lesser.html
- */
+* @author Tatar <tatarzb@poczta.onet.pl>
+* @version: 0.1
+* @license http://www.gnu.org/copyleft/lesser.html
+*/
 
 /**
- * Basic class for controllers
- *
- * @abstract
- */
+* Basic class for controllers
+*
+* @abstract
+*/
 abstract class controller {
 
   /**
@@ -25,7 +25,7 @@ abstract class controller {
   protected $model;
 
   /**
-  * Redirect to URL.
+  * Redirect to URL
   *
   * @param string $url URL to redirect to
   * @return void
@@ -33,5 +33,4 @@ abstract class controller {
   public function redirect($url) {
     header("location: ".$url);
   }
-
 }

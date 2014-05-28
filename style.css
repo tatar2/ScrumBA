@@ -1,0 +1,41 @@
+@CHARSET "UTF-8";
+
+.main {
+	margin-right: auto;
+	font-variant: small-caps;
+	width: 960px;
+	overflow: hidden;
+	margin-left: auto;
+	font-family: Arial, Helvetica, sans-serif
+}
+
+.top {
+	width: 960px;
+	background-color: gainsboro
+}
+
+.status {
+	background-color: gray;
+	text-align: right;
+	font-size: small
+}
+
+.middle {
+	width: 960px;
+	background-color: #f1f1f1;
+	min-height: 500px
+}
+
+
+.bottom {
+	width: 960px;
+	background-color: gainsboro
+}
+
+.footer {
+	text-align: center
+}
+
+.inside {
+	padding: 10px
+}

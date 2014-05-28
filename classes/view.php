@@ -1,15 +1,15 @@
 <?php
 /**
- * @author Tatar <tatarzb@poczta.onet.pl>
- * @version: 0.1
- * @license http://www.gnu.org/copyleft/lesser.html
- */
+* @author Tatar <tatarzb@poczta.onet.pl>
+* @version: 0.1
+* @license http://www.gnu.org/copyleft/lesser.html
+*/
 
 /**
- * Basic class for views
- *
- * @abstract
- */
+* Basic class for views
+*
+* @abstract
+*/
 
 abstract class view {
 	
@@ -20,7 +20,9 @@ abstract class view {
   * @return void
   */
   public function render($name) {
+  	//set this view name
     $this->set('view', $name);
+    //start rendering from page.html.php if exists
     $path='templates/page.html.php';
     if (is_file($path)) {
       require $path;
@@ -30,20 +32,23 @@ abstract class view {
   }
 
   /**
-  * Get include path for page part in current view
+  * Get include path for page section in current view
   *
   * @param string $name page part name
   * @return string path 
   */
-  public function getinclude ($part) {
-    $path='templates/'.$this->get('view').'.'.$part.'.html.php';
+  public function getinclude ($section) {
+  	//render requested page section specific for current view
+    $path='templates/'.$this->get('view').'.'.$section.'.html.php';
     if (is_file($path)) {
       return $path;
     } else {
-      $path='templates/default.'.$part.'.html.php';
+      // or render default section
+      $path='templates/default.'.$section.'.html.php';
       if (is_file($path)) {
         return $path;
       } else {
+      	// if default does not exist render empty
         return 'templates/empty.html.php';
       }
     }	
@@ -73,5 +78,4 @@ abstract class view {
       return $this->$name;
     }
   }
-
 }

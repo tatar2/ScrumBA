@@ -7,12 +7,12 @@ switch ($_GET['v']) {
   case 'index': 
     require 'controllers/controller_index.php';
     $ob = new controller_index ();
-    $ob->run($_GET['a']);
+    $ob->$_GET['a']();
     break;
   default: 
     require 'controllers/controller_index.php';
     $ob = new controller_index ();
-    $ob->view();
+    $ob->show();
     break;	
 }
 

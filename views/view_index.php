@@ -16,9 +16,8 @@ require 'classes/view.php';
 class view_index extends view {
 
   /**
-  * View index action handler
+  * Show index action handler
   *
-  * @param void
   * @return void
   */
   public function show() {

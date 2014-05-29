@@ -8,36 +8,39 @@
 require 'classes/controller.php';
 
 /**
-* Controller for index (main) page
+* Controller class for user pages - login, register, index
 *
 * @abstract
 */
-class controller_index extends controller {
+
+class controller_project extends controller {
 
   /**
   * Constructor
   * 
-  * Load and create view object.
+  * Load and create view and model objects
   * 
   * @return void
   */
   public function  __construct() {
-    require 'views/view_index.php';
-    $this->view = new view_index ();
+    require 'views/view_project.php';
+    require 'models/model_project.php';
+    $this->view = new view_project();
+    $this->model = new model_project();
   }
 
   /**
   * Show action handler
   * 
-  * If session active display user main page else show index (main) page.
+  * If session active display user main page else display index (main) page.
   * 
   * @return void
   */
   public function show() {
     if (isset($_SESSION['userid'])) {
-      $this->redirect('?v=project&a=show');
-    } else {
       $this->view->show();
+    } else {
+      $this->redirect('?v=index&a=show');
     }
   }
 }

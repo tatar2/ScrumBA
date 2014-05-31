@@ -1,17 +1,31 @@
 @CHARSET "UTF-8";
 
+ * {
+	font-variant: small-caps;
+	font-family: Arial, Helvetica, sans-serif
+}
+
 .main {
 	margin-right: auto;
-	font-variant: small-caps;
 	width: 960px;
 	overflow: hidden;
 	margin-left: auto;
-	font-family: Arial, Helvetica, sans-serif
 }
 
 .top {
 	width: 960px;
+	background-image:url("images/background1.jpg");
 	background-color: gainsboro
+}
+
+.top h1 {
+	font-size: 2.5em;
+	color: rgba(0, 0, 0, .5);
+	text-shadow:
+    -1px -1px 0 #fff,
+    1px -1px 0 #fff,
+    -1px 1px 0 #fff,
+    1px 1px 0 #fff;  
 }
 
 .status {
@@ -38,4 +52,40 @@
 
 .inside {
 	padding: 10px
+}
+
+.tcleft {
+	vertical-align: top;
+	text-align: right;
+}
+
+.tcright {
+	vertical-align: top;
+	text-align: left;
+}
+
+.errorhead {
+	color: red;
+	text-align: center
+}
+.errormessage {
+	text-align: center
+}
+.errorbutton {
+	text-align: center
+}
+
+.infohead {
+	color: green;
+	text-align: center
+}
+.infomessage {
+	text-align: center
+}
+.infobutton {
+	text-align: center
+}
+
+textarea {
+	resize: none
 }

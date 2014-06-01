@@ -89,3 +89,11 @@
 textarea {
 	resize: none
 }
+
+.projectdisplay {
+	padding-bottom: 10
+}
+
+.projectdisplay:hover {
+	background-color: lightgray
+}

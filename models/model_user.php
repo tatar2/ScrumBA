@@ -35,7 +35,7 @@ class model_user extends model {
   /**
   * Get id for given user
   *
-  * @param string $user
+  * @param string $username
   * @return array
   */
   public function getid ($username) {

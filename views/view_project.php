@@ -23,4 +23,13 @@ class view_project extends view {
   public function show() {
     $this->render('project_show');
   }
+  
+  /**
+  * Display project add page
+  *
+  * @return void
+  */
+  public function add() {
+  	$this->render('project_add');
+  }
 }

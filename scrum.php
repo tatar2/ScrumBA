@@ -20,6 +20,11 @@ if (isset($_GET['v'])) {
       $ob = new controller_project ();
       $ob->$_GET['a']();
       break;
+    case 'userproject':
+      require 'controllers/controller_userproject.php';
+      $ob = new controller_userproject ();
+      $ob->$_GET['a']();
+      break;
     default: 
       require 'controllers/controller_index.php';
       $ob = new controller_index ();

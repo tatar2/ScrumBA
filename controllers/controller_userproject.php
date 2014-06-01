@@ -8,12 +8,12 @@
 require 'classes/controller.php';
 
 /**
-* Controller class for user pages - login, register, index
+* Controller class for user to project assignment
 *
 * @abstract
 */
 
-class controller_project extends controller {
+class controller_userproject extends controller {
 
   /**
   * Constructor
@@ -23,10 +23,10 @@ class controller_project extends controller {
   * @return void
   */
   public function  __construct() {
-    require 'views/view_project.php';
-    require 'models/model_project.php';
-    $this->view = new view_project();
-    $this->model = new model_project();
+    require 'views/view_userproject.php';
+    require 'models/model_userproject.php';
+    $this->view = new view_userproject();
+    $this->model = new model_userproject();
   }
 
   /**
@@ -38,8 +38,10 @@ class controller_project extends controller {
   */
   public function show() {
     if (isset($_SESSION['userid'])) {
-      $projects=$this->model->getprojects($_SESSION['userid']);
-      $this->view->set('projects',$projects);
+      $project=$this->model->getproject($_GET['p']);
+      $this->view->set('project',$project[0]);
+      $usersprojects=$this->model->getuserprojects($_GET['p']);
+      $this->view->set('usersprojects',$usersprojects);
       $this->view->show();
     } else {
       $this->redirect('?v=index&a=show');

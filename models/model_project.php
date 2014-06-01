@@ -15,15 +15,15 @@ require 'classes/model.php';
 class model_project extends model {
 
   /**
-  * Get password for given user
+  * Get list of projects where user participates
   *
-  * @param string $username username
-  * @return string
+  * @param string $userid
+  * @return array
   */
-  public function getpassword ($username) {
+  public function getprojects ($userid) {
     $data=array();
-    $query=$this->pdo->prepare('select userpasswd from users where username=:username');
-    $query->bindValue(':username', $username, PDO::PARAM_STR);
+    $query=$this->pdo->prepare('select * from projects where userid=:userid or projectid in (select projectid from usersprojects where userid=:userid)');
+    $query->bindValue(':userid', $userid, PDO::PARAM_STR);
     if ($query->execute()) {
       while ($row = $query->fetch()) {
         $data[]=$row;
@@ -33,37 +33,18 @@ class model_project extends model {
   }
   
   /**
-  * Get id for given user
+  * Insert project data into database
   *
-  * @param string $user
-  * @return array
-  */
-  public function getid ($username) {
-    $data=array();
-    $query=$this->pdo->prepare('select userid from users where username=:username');
-    $query->bindValue(':username', $username, PDO::PARAM_STR);
-    if ($query->execute()) {
-      while ($row = $query->fetch()) {
-        $data[]=$row;
-      }
-    }
-    return $data;
-  }
-
-  /**
-  * Insert user data into database
-  *
-  * @param string $email user email
-  * @param string $password user password
-  * @param string $name user name
+  * @param string $userid 
+  * @param string $projectname
+  * @param string $projectdesc
   * @return bool
   */
-  public function putuser ($email,$password,$name) {
-    $data=array();
-    $insert=$this->pdo->prepare('insert into users (userpasswd,useremail,username,userenabled) values (:password, :email, :name, TRUE)');
-    $insert->bindValue (':password', $password, PDO::PARAM_STR);
-    $insert->bindValue (':email', $email, PDO::PARAM_STR);
-    $insert->bindValue (':name', $name, PDO::PARAM_STR);
+  public function putproject ($userid, $projectname, $projectdesc) {
+    $insert=$this->pdo->prepare('insert into projects (projectname, projectdesc, userid) values (:projectname, :projectdesc, :userid)');
+    $insert->bindValue (':projectname', $projectname, PDO::PARAM_STR);
+    $insert->bindValue (':projectdesc', $projectdesc, PDO::PARAM_STR);
+    $insert->bindValue (':userid', $userid, PDO::PARAM_STR);
     return $insert->execute ();
   }
 }

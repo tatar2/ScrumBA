@@ -90,10 +90,14 @@ textarea {
 	resize: none
 }
 
-.projectdisplay {
-	padding-bottom: 10
+.projectdisplay div{
+	padding: 5px
 }
 
 .projectdisplay:hover {
 	background-color: lightgray
+}
+
+.addbutton {
+	padding-top: 10px
 }

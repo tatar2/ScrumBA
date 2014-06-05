@@ -59,7 +59,6 @@ class model_user extends model {
   * @return bool
   */
   public function putuser ($email,$password,$name) {
-    $data=array();
     $insert=$this->pdo->prepare('insert into users (userpasswd,useremail,username,userenabled) values (:password, :email, :name, TRUE)');
     $insert->bindValue (':password', $password, PDO::PARAM_STR);
     $insert->bindValue (':email', $email, PDO::PARAM_STR);

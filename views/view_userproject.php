@@ -16,11 +16,20 @@ require 'classes/view.php';
 class view_userproject extends view {
 
   /**
-  * Register user action handler
+  * Show project users details action handler
   * 
   * @return void
   */
   public function show() {
     $this->render('userproject_show');
+  }
+  
+  /**
+   * Add project users action handler
+   *
+   * @return void
+   */
+  public function addusers() {
+  	$this->render('userproject_addusers');
   }
 }

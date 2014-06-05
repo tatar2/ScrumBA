@@ -5,16 +5,8 @@
     if (empty($projects)) {
       echo 'Nie masz zdefiniowanych projektów.';
     } else {
-  ?>
-  
-  <?php
 		foreach ($projects as $project){
-  ?>
-    <div class="projectdisplay">
-    <div><a href="?v=userproject&a=show&p=<?php print($project['projectid'])?>"><?php print($project['projectname']); ?></a></div>
-    <div><?php print($project['projectdesc']); ?></div>
-  </div>
-  <?php
+			require $this->getinclude('projectdisplay');
     	}
     }
   ?>

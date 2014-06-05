@@ -30,7 +30,7 @@ class controller_userproject extends controller {
   }
 
   /**
-  * Show project action handler
+  * Show project users page display action handler
   * 
   * If session active display user main page else display index (main) page.
   * 
@@ -38,9 +38,9 @@ class controller_userproject extends controller {
   */
   public function show() {
     if (isset($_SESSION['userid'])) {
-      $project=$this->model->getproject($_GET['p']);
+      $project=$this->model->getproject($_POST['projectid']);
       $this->view->set('project',$project[0]);
-      $usersprojects=$this->model->getuserprojects($_GET['p']);
+      $usersprojects=$this->model->getusersprojects($_POST['projectid']);
       $this->view->set('usersprojects',$usersprojects);
       $this->view->show();
     } else {
@@ -49,40 +49,39 @@ class controller_userproject extends controller {
   }
   
   /**
-  * Add project action handler
+  * Add project users page display action handler
   *
-  * If session active display add project page else display index (main) page.
+  * If session active display add project users page else display index (main) page.
   *
   * @return void
   */
-  public function add() {
+  public function addusers() {
   	if (isset($_SESSION['userid'])) {
-  		$this->view->add();
+  		$notusers=$this->model->getnotusersprojects($_POST['projectid']);
+  		$this->view->set('users',$notusers);
+  		$project=$this->model->getproject($_POST['projectid']);
+        $this->view->set('project',$project[0]);
+  		$this->view->addusers();
   	} else {
   		$this->redirect('?v=index&a=show');
   	}
   }
   
   /**
-  * Add project action handler
+  * Add users to project action handler
   *
-  * If session active display add project page else display index (main) page.
+  * If session active add users to project else display index (main) page.
   *
   * @return void
   */
-  public function doadd() {
+  public function doaddusers() {
   	if (isset($_SESSION['userid'])) {
-  		if (isset($_POST['projectname']) && isset($_POST['projectdesc'])){
-  			if ($this->model->putproject($_SESSION['userid'],$_POST['projectname'],$_POST['projectdesc'])){
-  				$this->view->set('infomessage', "Projekt został utworzony.");
-  				$this->view->set('redirectto', "?v=project&a=show");
-  				$this->view->render('info_view');
-  			} else {
-  				$this->view->set('errormessage', "Projekt nie został utworzony.");
-  				$this->view->set('redirectto', "?v=project&a=show");
-  				$this->view->render('error_view');
+  		if (isset($_POST['userid']) && isset($_POST['projectid'])){
+  			foreach ($_POST['userid'] as $userid) {
+  				$this->model->putuserproject($userid, $_POST['projectid']);
   			}
   		}
+  		$this->redirect('?v=userproject&a=show');
   	} else {
   		$this->redirect('?v=index&a=show');
   	}

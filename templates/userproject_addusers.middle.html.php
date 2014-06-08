@@ -27,4 +27,5 @@
   <?php
     }
   ?>
+  <a href="?v=userproject&a=show&p=<?php print $project['projectid']?>">Powrót</a>
 </div>

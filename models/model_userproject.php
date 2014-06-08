@@ -58,7 +58,7 @@ class model_userproject extends model {
    */
   public function getnotusersprojects ($projectid) {
   	$data=array();
-  	$query=$this->pdo->prepare('select userid , username from users where userid not in (select userid from usersprojects where projectid=:projectid)');
+  	$query=$this->pdo->prepare('select userid , username from users where userid not in (select userid from usersprojects where projectid=:projectid) and userid not in (select userid from projects where projectid=:projectid)');
   	$query->bindValue(':projectid', $projectid, PDO::PARAM_STR);
   	if ($query->execute()) {
   		while ($row = $query->fetch()) {
@@ -98,6 +98,20 @@ class model_userproject extends model {
   	$insert->bindValue(':projectid', $projectid, PDO::PARAM_STR);
   	$insert->bindValue(':userid', $userid, PDO::PARAM_STR);
   	return $insert->execute ();
+  }
+  
+  /**
+   * Remove user from project
+   *
+   * @param string $projectid
+   * @param string $userid
+   * @return array
+   */
+  public function deleteuserproject ($userid, $projectid) {
+  	$delete=$this->pdo->prepare('delete from usersprojects where userid=:userid and projectid=:projectid');
+  	$delete->bindValue(':projectid', $projectid, PDO::PARAM_STR);
+  	$delete->bindValue(':userid', $userid, PDO::PARAM_STR);
+  	return $delete->execute ();
   }
 }
 

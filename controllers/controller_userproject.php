@@ -32,15 +32,15 @@ class controller_userproject extends controller {
   /**
   * Show project users page display action handler
   * 
-  * If session active display user main page else display index (main) page.
+  * If session active display project page else display index (main) page.
   * 
   * @return void
   */
   public function show() {
     if (isset($_SESSION['userid'])) {
-      $project=$this->model->getproject($_POST['projectid']);
+      $project=$this->model->getproject($_GET['p']);
       $this->view->set('project',$project[0]);
-      $usersprojects=$this->model->getusersprojects($_POST['projectid']);
+      $usersprojects=$this->model->getusersprojects($_GET['p']);
       $this->view->set('usersprojects',$usersprojects);
       $this->view->show();
     } else {
@@ -57,9 +57,9 @@ class controller_userproject extends controller {
   */
   public function addusers() {
   	if (isset($_SESSION['userid'])) {
-  		$notusers=$this->model->getnotusersprojects($_POST['projectid']);
+  		$notusers=$this->model->getnotusersprojects($_GET['p']);
   		$this->view->set('users',$notusers);
-  		$project=$this->model->getproject($_POST['projectid']);
+  		$project=$this->model->getproject($_GET['p']);
         $this->view->set('project',$project[0]);
   		$this->view->addusers();
   	} else {
@@ -81,7 +81,46 @@ class controller_userproject extends controller {
   				$this->model->putuserproject($userid, $_POST['projectid']);
   			}
   		}
-  		$this->redirect('?v=userproject&a=show');
+  		$this->redirect('?v=userproject&a=show&p='.$_POST['projectid']);
+  	} else {
+  		$this->redirect('?v=index&a=show');
+  	}
+  }
+  
+  /**
+   * remove project users page display action handler
+   *
+   * If session active display add project users page else display index (main) page.
+   *
+   * @return void
+   */
+  public function removeusers() {
+  	if (isset($_SESSION['userid'])) {
+  		$users=$this->model->getusersprojects($_GET['p']);
+  		$this->view->set('users',$users);
+  		$project=$this->model->getproject($_GET['p']);
+  		$this->view->set('project',$project[0]);
+  		$this->view->removeusers();
+  	} else {
+  		$this->redirect('?v=index&a=show');
+  	}
+  }
+  
+  /**
+   * Remove users from project action handler
+   *
+   * If session active add users to project else display index (main) page.
+   *
+   * @return void
+   */
+  public function doremoveusers() {
+  	if (isset($_SESSION['userid'])) {
+  		if (isset($_POST['userid']) && isset($_POST['projectid'])){
+  			foreach ($_POST['userid'] as $userid) {
+  				$this->model->deleteuserproject($userid, $_POST['projectid']);
+  			}
+  		}
+  		$this->redirect('?v=userproject&a=show&p='.$_POST['projectid']);
   	} else {
   		$this->redirect('?v=index&a=show');
   	}

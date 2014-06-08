@@ -32,4 +32,13 @@ class view_userproject extends view {
   public function addusers() {
   	$this->render('userproject_addusers');
   }
+  
+  /**
+   * Remove project users action handler
+   *
+   * @return void
+   */
+  public function removeusers() {
+  	$this->render('userproject_removeusers');
+  }
 }

@@ -8,25 +8,38 @@
     	require $this->getinclude('projectdisplay');
   ?>
   <h3>Lista uczestników:</h3>
-  <table>
   <?php
       $usersprojects=$this->get('usersprojects');
-      foreach ($usersprojects as $userproject) {
+      if (empty($usersprojects)) {
+      	echo 'Brak uczestników.';
+      } else {
+  ?>
+  <table>
+  <?php 
+       	foreach ($usersprojects as $userproject) {
   ?>
   	<tr>
-    	<td><?php print ($userproject['username']);?>
+  		<td><?php print ($userproject['username']);?>
     </tr>
   <?php
-      }
+      	}
   ?>
   </table>
-  <div class="addbutton">
-    <form name="addusers" action="?v=userproject&a=addusers" method="post">
-      <input type="hidden" name="projectid" value="<?php print $project['projectid']?>">
-      <input type="submit" value="Dodaj">
-    </form>
+  <?php 
+  	}
+  ?>
+  <div>
+  	<a href="?v=userproject&a=addusers&p=<?php print $project['projectid']?>">Dodaj uczestników</a>
+  <?php 
+  	if (!empty($usersprojects)) {
+  ?>
+    <a href="?v=userproject&a=removeusers&p=<?php print $project['projectid']?>">Usuń uczestników</a>
+  <?php 
+      } 
+  ?>
   </div>
   <?php
     }
   ?>
 </div>
+

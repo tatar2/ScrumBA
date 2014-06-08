@@ -18,16 +18,6 @@
 	background-color: gainsboro
 }
 
-.top h1 {
-	font-size: 2.5em;
-	color: rgba(0, 0, 0, .5);
-	text-shadow:
-    -1px -1px 0 #fff,
-    1px -1px 0 #fff,
-    -1px 1px 0 #fff,
-    1px 1px 0 #fff;  
-}
-
 .status {
 	background-color: gray;
 	text-align: right;
@@ -90,6 +80,14 @@ textarea {
 	resize: none
 }
 
+.bottomlinks {
+	padding: 5px
+}
+
+.projectdisplay {
+	margin-bottom: 20px
+}
+
 .projectdisplay div{
 	padding: 5px
 }
@@ -98,6 +96,7 @@ textarea {
 	background-color: lightgray
 }
 
-.addbutton {
-	padding-top: 10px
+.projectdisplay .projectname {
+	font-weight: bold;
+	font-size: large
 }

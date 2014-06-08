@@ -1,5 +1,4 @@
 <div class="inside project_show">
-  <h2>Lista projektów</h2>
   <?php
     $projects=$this->get('projects');
     if (empty($projects)) {
@@ -10,9 +9,7 @@
     	}
     }
   ?>
-  <div class="addbutton">
-    <form name="addproject" action="?v=project&a=add" method="post">
-      <input type="submit" value="Dodaj projekt">
-    </form>
+  <div class="bottomlinks">
+    <a href="?v=project&a=add">Utwórz projekt</a>
   </div>
 </div>

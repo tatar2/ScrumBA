@@ -1,3 +1,3 @@
 <div class="inside">
-  <img src="images/logo.svg">
+  <a href="?v=index&a=show"><img src="images/logo.svg"></a>
 </div>

@@ -88,12 +88,12 @@ class controller_userproject extends controller {
   }
   
   /**
-   * remove project users page display action handler
-   *
-   * If session active display add project users page else display index (main) page.
-   *
-   * @return void
-   */
+  * remove project users page display action handler
+  *
+  * If session active display add project users page else display index (main) page.
+  *
+  * @return void
+  */
   public function removeusers() {
   	if (isset($_SESSION['userid'])) {
   		$users=$this->model->getusersprojects($_GET['p']);
@@ -107,12 +107,12 @@ class controller_userproject extends controller {
   }
   
   /**
-   * Remove users from project action handler
-   *
-   * If session active add users to project else display index (main) page.
-   *
-   * @return void
-   */
+  * Remove users from project action handler
+  *
+  * If session active add users to project else display index (main) page.
+  *
+  * @return void
+  */
   public function doremoveusers() {
   	if (isset($_SESSION['userid'])) {
   		if (isset($_POST['userid']) && isset($_POST['projectid'])){

@@ -7,6 +7,7 @@
     } else {
     	require $this->getinclude('projectdisplay');
   ?>
+  <div class="userlist">
   <h3>Lista uczestników:</h3>
   <?php
       $usersprojects=$this->get('usersprojects');
@@ -25,10 +26,11 @@
       	}
   ?>
   </table>
+  </div>
   <?php 
   	}
   ?>
-  <div>
+  <div class="bottomlinks">
   	<a href="?v=userproject&a=addusers&p=<?php print $project['projectid']?>">Dodaj uczestników</a>
   <?php 
   	if (!empty($usersprojects)) {

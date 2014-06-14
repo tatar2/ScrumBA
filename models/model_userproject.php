@@ -51,32 +51,14 @@ class model_userproject extends model {
   }
   
   /**
-   * Get list of users that do not contribute to a project
-   *
-   * @param string $projectid
-   * @return array
-   */
-  public function getnotusersprojects ($projectid) {
-  	$data=array();
-  	$query=$this->pdo->prepare('select userid , username from users where userid not in (select userid from usersprojects where projectid=:projectid) and userid not in (select userid from projects where projectid=:projectid)');
-  	$query->bindValue(':projectid', $projectid, PDO::PARAM_STR);
-  	if ($query->execute()) {
-  		while ($row = $query->fetch()) {
-  			$data[]=$row;
-  		}
-  	}
-  	return $data;
-  }
-  
-  /**
-  * Get list of registered users that do not contribute to a project
+  * Get list of users that do not contribute to a project
   *
   * @param string $projectid
   * @return array
   */
-  public function getusersnotinproject ($projectid) {
+  public function getnotusersprojects ($projectid) {
   	$data=array();
-  	$query=$this->pdo->prepare('select * from users where user enabled is not FALSE and userid not in (select userid from usersprojects where projectid=:projectid)');
+  	$query=$this->pdo->prepare('select userid , username from users where userid not in (select userid from usersprojects where projectid=:projectid) and userid not in (select userid from projects where projectid=:projectid)');
   	$query->bindValue(':projectid', $projectid, PDO::PARAM_STR);
   	if ($query->execute()) {
   		while ($row = $query->fetch()) {
@@ -101,12 +83,12 @@ class model_userproject extends model {
   }
   
   /**
-   * Remove user from project
-   *
-   * @param string $projectid
-   * @param string $userid
-   * @return array
-   */
+  * Remove user from project
+  *
+  * @param string $projectid
+  * @param string $userid
+  * @return array
+  */
   public function deleteuserproject ($userid, $projectid) {
   	$delete=$this->pdo->prepare('delete from usersprojects where userid=:userid and projectid=:projectid');
   	$delete->bindValue(':projectid', $projectid, PDO::PARAM_STR);

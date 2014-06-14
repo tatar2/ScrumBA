@@ -7,6 +7,7 @@
     } else {
     	require $this->getinclude('projectdisplay');
   ?>
+  <div class="userlist">
   <h3>Dodaj uczestników:</h3>
   <form name="addusers" action="?v=userproject&a=doaddusers" method="post">
   <table>
@@ -24,8 +25,11 @@
       <input type="hidden" name="projectid" value="<?php print $project['projectid']?>">
       <input type="submit" value="Dodaj uczestników" class="addbutton">
     </form>
+  </div>
   <?php
     }
   ?>
-  <a href="?v=userproject&a=show&p=<?php print $project['projectid']?>">Powrót</a>
+  <div class="bottomlinks">
+  	<a href="?v=userproject&a=show&p=<?php print $project['projectid']?>">Powrót</a>
+  </div>
 </div>
